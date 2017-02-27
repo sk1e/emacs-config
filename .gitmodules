@@ -1,0 +1,12 @@
+[submodule "devtools-client"]
+	path = devtools-client
+	url = https://github.com/sk1e/devtools-client
+[submodule "devtools-server"]
+	path = devtools-server
+	url = https://github.com/sk1e/devtools-server
+[submodule "ss-rpc-client"]
+	path = ss-rpc-client
+	url = https://github.com/sk1e/ss-rpc-client
+[submodule "emacs-window-layout"]
+	path = emacs-window-layout
+	url = https://github.com/kiwanami/emacs-window-layout
