@@ -7,7 +7,6 @@
 (require 'config)
 
 
-
 (defconst tlc:devtools-server-dependency
   (make-tlc:fragile-dependency
    :project-name "devtools-server"

@@ -147,13 +147,10 @@
     ad-do-it))
 
 
-;; (require 'jade-mode)
-
 (push '("\\.scrbl\\'" . scheme-mode) auto-mode-alist)
 (push '("\\.styl\\'" . jade-mode) auto-mode-alist)
+(push '("\\.bash_aliases\\'" . shell-script-mode) auto-mode-alist)
 
-;; (mapc (lambda (dir) (add-to-list 'load-path (expand-file-name dir "~/Projects/emacs-extensions/"))) 
-;;       '("pretty-log" "tree" "browser" "etc"))
 
 (push '("\\.html\\'" . web-mode) auto-mode-alist)
 (push '("\\.jsx\\'" . web-mode) auto-mode-alist)
@@ -170,7 +167,6 @@
 
 (require 'quack)
 (require 'jade-mode)
-;; (require 'win-layouts)
 
 (require 'bindings)
 
@@ -179,14 +175,6 @@
 (drag-stuff-global-mode 1)
 
 
-;; (drag-stuff-define-keys)
-
-
-;; (add-to-list 'load-path (format "~/Projects/%s/elisp-side" devtools-dir))
-;; (require 'devtools)
-
-
-;; (add-to-list 'load-path "~/path-to-yasnippet")
 (require 'yasnippet)
 (yas-global-mode 1)
 
