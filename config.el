@@ -1,3 +1,4 @@
+;;;; -*- lexical-binding: t -*-
 (require 'package)
 
 (require 'cask "~/.cask/cask.el")
@@ -124,6 +125,19 @@
                       '(javascript-jshint)))
 
 (flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-mode 'typescript-tslint 'web-mode)
+
+
+(add-hook 'typescript-mode-hook (let (append-checker)
+                                  (setq append-checker
+                                        (lambda () (flycheck-add-next-checker 'tsx-tide
+                                                                         '(warning . typescript-tslint)
+                                                                         'append)
+                                          (setq append-checker (lambda ()))))
+                                  (lambda () (funcall append-checker))))
+
+
+(setq flycheck-typescript-tslint-executable "~/Projects/reputation-frontend/node_modules/.bin/tslint") ;; TODO you know
 (setq-default flycheck-temp-prefix ".flycheck")
 
 ;; disable json-jsonlist checking for json files
