@@ -22,7 +22,7 @@
 (setq display-time-day-and-date t
       display-time-24hr-format t
       message-log-max 1000
-      max-mini-window-height 10
+      max-mini-window-height 20
       make-backup-files nil
       max-specpdl-size 10000
       max-lisp-eval-depth 10000
