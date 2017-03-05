@@ -6,7 +6,6 @@
 (cask-initialize)
 
 
-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (delete-selection-mode 1)
@@ -17,6 +16,8 @@
 (line-number-mode -1)
 
 
+(setq display-buffer-alist
+      '(("*Racket Describe*" (lambda (buffer alist) t))))
 
 (setq display-time-day-and-date t
       display-time-24hr-format t
@@ -30,6 +31,15 @@
       indent-tabs-mode nil
       ido-enable-flex-matching t
       ido-auto-merge-work-directories-length -1)
+
+(defun racket-setup-company ()
+  (when (boundp 'company-backends)
+    (make-local-variable 'company-backends)
+    (setq company-backends (delete 'company-dabbrev company-backends))
+    (add-to-list 'company-backends 'company-dabbrev)
+    (add-to-list 'company-backends 'company-files)))
+
+(add-hook 'racket-mode-hook 'racket-setup-company)
 
 
 (setq-default indent-tabs-mode nil
@@ -161,7 +171,7 @@
     ad-do-it))
 
 
-(push '("\\.scrbl\\'" . scheme-mode) auto-mode-alist)
+
 (push '("\\.styl\\'" . jade-mode) auto-mode-alist)
 (push '("\\.bash_aliases\\'" . shell-script-mode) auto-mode-alist)
 
@@ -179,9 +189,8 @@
 
 
 
-(require 'quack)
 (require 'jade-mode)
-
+(require 'racket-mode)
 (require 'bindings)
 
 
@@ -200,7 +209,7 @@
           )))
 
 
-(add-hook 'scheme-mode-hook 'my-pretty-lambda)
+(add-hook 'racket-mode-hook 'my-pretty-lambda)
 (add-hook 'emacs-lisp-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 

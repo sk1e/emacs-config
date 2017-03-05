@@ -14,6 +14,7 @@
                     distance)))
 
 
+
 ;; (setq display-time-day-and-date t)
 ;; (setq display-time-format "%I:%M %p %e %b %y %_5j")
 ;; ;; (display-time)
@@ -27,7 +28,6 @@
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-x C-f") 'ido-find-file)
-(define-key scheme-mode-map (kbd "C-x C-f") 'ido-find-file)
 
 (global-set-key (kbd "C-c s") (lambda ()
                                 (interactive)
@@ -75,7 +75,9 @@
 (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
 
 (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
+;; (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "reputation-frontend")))
 (global-set-key [f3] (lambda () (interactive) (dt:call! 'pt:load-project! "emacs-config")))
+
 
 
 
@@ -95,7 +97,6 @@
 (global-set-key [f9] 'flycheck-previous-error)
 (global-set-key [f10] 'flycheck-next-error)
 
-
 (setq skeleton-pair t)
 (global-set-key "(" 'skeleton-pair-insert-maybe)
 (global-set-key "[" 'skeleton-pair-insert-maybe)
@@ -107,10 +108,17 @@
                       (let ((last-command-event ?\())
                         (call-interactively 'skeleton-pair-insert-maybe))))
 
+(add-hook 'racket-mode-hook (lambda () (define-key racket-mode-map "[" 'skeleton-pair-insert-maybe)))
+
+;; (define-key scheme-mode-map "[" 'skeleton-pair-insert-maybe)
+
+;; (add-hook 'scheme-mode-hook (lambda ()
+;;                               (define-key scheme-mode-map "[" 'skeleton-pair-insert-maybe)))
+
 
 (define-key lisp-mode-map "'" 'self-insert-command)
 (define-key emacs-lisp-mode-map "'" 'self-insert-command)
-(define-key scheme-mode-map "'" 'self-insert-command)
+(define-key racket-mode-map "'" 'self-insert-command)
 (define-key lisp-interaction-mode-map "'" 'self-insert-command)
 
 (define-key emacs-lisp-mode-map (kbd "RET") #'newline-and-indent)
