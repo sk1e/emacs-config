@@ -68,10 +68,6 @@
 (define-key jade-mode-map (kbd "M-<left>")  #'(lambda () (interactive) (shift-text -2)))
 
 
-(define-key emacs-lisp-mode-map (kbd "RET") #'newline-and-indent)
-(define-key lisp-mode-map (kbd "RET") #'newline-and-indent)
-
-
 (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
 
 (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
@@ -107,6 +103,7 @@
                       (interactive)
                       (let ((last-command-event ?\())
                         (call-interactively 'skeleton-pair-insert-maybe))))
+
 
 (add-hook 'racket-mode-hook (lambda () (define-key racket-mode-map "[" 'skeleton-pair-insert-maybe)))
 
