@@ -160,7 +160,9 @@
   ;;; http://web-mode.org/
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2))
+  (setq web-mode-code-indent-offset 2)
+  (add-to-list 'web-mode-comment-formats '("tsx" . "//" ))
+  (add-to-list 'web-mode-comment-formats '("jsx" . "//" )))
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
@@ -192,7 +194,7 @@
 (require 'jade-mode)
 (require 'racket-mode)
 (require 'bindings)
-
+(require 'utils)
 
 (require 'drag-stuff)
 (drag-stuff-global-mode 1)
@@ -221,8 +223,9 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  (tide-hl-identifier-mode +1)  
+  (company-mode +1)
+  (add-to-list 'company-backends '(company-tide company-yasnippet)))
 
 
 (setq company-tooltip-align-annotations t)
@@ -240,7 +243,6 @@
           (lambda ()
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
               (setup-tide-mode))))
-
 
 (provide 'config)
 
