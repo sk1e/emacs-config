@@ -3,6 +3,7 @@
 
 (require 'cask "~/.cask/cask.el")
 
+
 (cask-initialize)
 
 
@@ -115,7 +116,6 @@
 
 
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/i-iterate/lisp/"))
 
 (require 'eieio)
 (require 'color)
@@ -223,9 +223,9 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)  
+  (tide-hl-identifier-mode +1)
   (company-mode +1)
-  (add-to-list 'company-backends '(company-tide company-yasnippet)))
+  (add-to-list 'company-backends '(company-files company-tide :separate company-yasnippet company-dabbrev-code)))
 
 
 (setq company-tooltip-align-annotations t)
@@ -238,6 +238,9 @@
                                                                                   :placeOpenBraceOnNewLineForFunctions nil
                                                                                   :indentSize 2
                                                                                   :tabSize 2))
+;; (add-to-list 'load-path "~/Projects/tide")
+
+;; (require 'tide)
 
 (add-hook 'web-mode-hook
           (lambda ()
