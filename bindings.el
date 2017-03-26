@@ -56,6 +56,8 @@
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
 (global-set-key (kbd "s-v") 'clipboard-yank)
 
+(global-set-key (kbd "s-g") 'tide-jump-to-definition)
+(global-set-key (kbd "s-=") 'company-complete)
 
 (global-set-key (kbd "M-<up>") 'drag-stuff-up)
 (global-set-key (kbd "M-<down>") 'drag-stuff-down)
