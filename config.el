@@ -225,7 +225,7 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1)
-  (add-to-list 'company-backends '(company-files company-tide :separate company-yasnippet company-dabbrev-code)))
+  (add-to-list 'company-backends '(company-files company-tide :separate company-yasnippet)))
 
 
 (setq company-tooltip-align-annotations t)
