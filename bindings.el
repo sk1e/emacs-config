@@ -1,5 +1,6 @@
 ;;;; -*- lexical-binding: t -*-
-   
+(require 'smerge-mode)
+
 (defun shift-text (distance)
   (if (use-region-p)
       (let ((mark (mark)))
@@ -12,7 +13,6 @@
     (indent-rigidly (line-beginning-position)
                     (line-end-position)
                     distance)))
-
 
 
 ;; (setq display-time-day-and-date t)
@@ -70,8 +70,8 @@
 (define-key jade-mode-map (kbd "M-<left>")  #'(lambda () (interactive) (shift-text -2)))
 
 
+;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "ipsos-online-polls")))
 (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
-
 (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
 ;; (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "reputation-frontend")))
 (global-set-key [f3] (lambda () (interactive) (dt:call! 'pt:load-project! "emacs-config")))
@@ -109,11 +109,29 @@
 
 (add-hook 'racket-mode-hook (lambda () (define-key racket-mode-map "[" 'skeleton-pair-insert-maybe)))
 
-;; (define-key scheme-mode-map "[" 'skeleton-pair-insert-maybe)
 
-;; (add-hook 'scheme-mode-hook (lambda ()
-;;                               (define-key scheme-mode-map "[" 'skeleton-pair-insert-maybe)))
+(setq smerge-mode-local-map
+      (let ((smerge-mode-local-map (make-sparse-keymap)))  
+        (define-key smerge-mode-local-map (kbd "d") #'smerge-next)
+        (define-key smerge-mode-local-map (kbd "a") #'smerge-prev)
+        (define-key smerge-mode-local-map (kbd "m") #'smerge-keep-mine)
+        (define-key smerge-mode-local-map (kbd "o") #'smerge-keep-other)
+        (define-key smerge-mode-local-map (kbd "b") #'smerge-keep-all)
+        (define-key smerge-mode-local-map (kbd "u") #'undo)
+        (define-key smerge-mode-local-map (kbd "`") (lambda ()
+                                                      (interactive)
+                                                      (use-global-map global-map)))
+        smerge-mode-local-map))
 
+;; (set (make-local-variable 'project-buffer-modified-p) nil)
+
+
+(defun smerge-activate-local-map ()
+  (interactive)
+  (use-global-map smerge-mode-local-map))
+
+
+(define-key smerge-mode-map (kbd "C-c m") 'smerge-activate-local-map)
 
 (define-key lisp-mode-map "'" 'self-insert-command)
 (define-key emacs-lisp-mode-map "'" 'self-insert-command)
