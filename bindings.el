@@ -62,6 +62,26 @@
 (global-set-key (kbd "M-<up>") 'drag-stuff-up)
 (global-set-key (kbd "M-<down>") 'drag-stuff-down)
 
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
 (global-unset-key (kbd "M-<right>"))
 (global-unset-key (kbd "M-<left>"))
 
@@ -70,8 +90,9 @@
 (define-key jade-mode-map (kbd "M-<left>")  #'(lambda () (interactive) (shift-text -2)))
 
 
-;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "ipsos-online-polls")))
-(global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
+(global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "ipsos-online-polls")))
+;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
+;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
 (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
 ;; (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "reputation-frontend")))
 (global-set-key [f3] (lambda () (interactive) (dt:call! 'pt:load-project! "emacs-config")))
@@ -135,6 +156,9 @@
 
 (define-key lisp-mode-map "'" 'self-insert-command)
 (define-key emacs-lisp-mode-map "'" 'self-insert-command)
+(define-key emacs-lisp-mode-map (kbd "C-j") 'eval-print-last-sexp)
+
+
 (define-key racket-mode-map "'" 'self-insert-command)
 (define-key lisp-interaction-mode-map "'" 'self-insert-command)
 

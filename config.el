@@ -6,7 +6,6 @@
 
 (cask-initialize)
 
-
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (delete-selection-mode 1)
@@ -17,15 +16,59 @@
 (line-number-mode -1)
 
 
+;; (display-buffer)
+
+(defun hello-display (a b)
+  (message ">>>> hello %s %s" a b))
+
 (setq display-buffer-alist
-      '(("*Racket Describe*" (lambda (buffer alist) t))))
+      `(
+        ;; (,(rx bos "/") . (hello-display))
+        ("*Racket Describe*"  (lambda (buffer alist) t))
+        ))
+(defun tide-parse-error (response checker)
+  (-map
+   (lambda (diagnostic)
+     (let* ((start (plist-get diagnostic :start))
+            (line (plist-get start :line))
+            (column (tide-column line (plist-get start :offset))))
+       (flycheck-error-new-at line column 'error (plist-get diagnostic :text)
+                              :checker checker
+                              :id (plist-get diagnostic :code))))
+   (let ((diagnostic (car (tide-plist-get response :body))))
+     (-concat (plist-get diagnostic :syntaxDiag)
+              (plist-get diagnostic :semanticDiag)))))
+
+;; magit-auto-revert-mode
+;; (require 'magit)
+;; magit-
+
+;; (global-auto-revert-mode 1)
+;; (setq auto-revert-check-vc-info t)
+
+;; (generate-new-buffer "/huita")
+;; (display-buffer "/huita")
+
+;; (defun wl-half (buffer alist)
+;;   (with-disabled-lt-hook
+;;    (delete-other-windows)
+;;    (window--display-buffer buffer (split-window-right) 'window)))
+
+;; (setq display-buffer-alist
+;;       `((,(rx bos (or "*Messages*" "*Help*" "*Backtrace*"
+;; 		      (and (1+ ascii) "-l1og")
+;; 		      (and "*exec" (1+ ascii)))
+;; 	      eos) . (wl-half))
+;; 	;; (,(rx bos (1+ ascii) "-log" eos) . (wl-log))
+;; 	("" (display-buffer-same-window))))
+
 
 (setq display-time-day-and-date t
       display-time-24hr-format t
       message-log-max 1000
       max-mini-window-height 20
       make-backup-files nil
-      max-specpdl-size 10000
+      max-specpdl-size 20000
       max-lisp-eval-depth 10000
       linum-format "%4d"
       use-dialog-box nil
@@ -147,7 +190,8 @@
                                   (lambda () (funcall append-checker))))
 
 
-(setq flycheck-typescript-tslint-executable "~/Projects/reputation-frontend/node_modules/.bin/tslint") ;; TODO you know
+;; (setq flycheck-typescript-tslint-executable "~/Projects/reputation-frontend/node_modules/.bin/tslint") ;; TODO you know
+(setq flycheck-typescript-tslint-executable "~/Projects/ipsos-online-polls/node_modules/.bin/tslint") ;; TODO you know
 (setq-default flycheck-temp-prefix ".flycheck")
 
 ;; disable json-jsonlist checking for json files
