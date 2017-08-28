@@ -8,6 +8,10 @@
                                     str)
                "-")))
 
+(defun px-to-rem (arg)
+  (interactive "n? ")
+  (insert (format "%.2frem" (/ arg 14.0))))
+
 
 (provide 'utils)
 
