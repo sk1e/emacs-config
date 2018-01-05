@@ -269,7 +269,14 @@
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
   (company-mode +1)
-  (add-to-list 'company-backends '(company-files company-tide :separate company-yasnippet)))
+  (add-to-list (make-local-variable 'company-backends)
+               '(company-files company-tide :separate company-yasnippet)))
+
+(add-hook 'scss-mode-hook
+          (lambda ()
+            (setq-local company-dabbrev-char-regexp (rx "$" (1+ (in alpha num "-"))))
+            (add-to-list (make-local-variable 'company-backends)
+                         '(company-css company-files company-dabbrev :separate company-yasnippet))))
 
 
 (setq company-tooltip-align-annotations t)
