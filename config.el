@@ -279,6 +279,8 @@
                          '(company-css company-files company-dabbrev :separate company-yasnippet))))
 
 
+(add-hook 'scss-mode-hook 'rainbow-mode)
+
 (setq company-tooltip-align-annotations t)
 
 (add-hook 'before-save-hook 'tide-format-before-save)
