@@ -16,8 +16,6 @@
 (line-number-mode -1)
 
 
-;; (display-buffer)
-
 (defun hello-display (a b)
   (message ">>>> hello %s %s" a b))
 
@@ -68,13 +66,14 @@
       message-log-max 1000
       max-mini-window-height 20
       make-backup-files nil
-      max-specpdl-size 20000
-      max-lisp-eval-depth 10000
       linum-format "%4d"
       use-dialog-box nil
       indent-tabs-mode nil
       ido-enable-flex-matching t
-      ido-auto-merge-work-directories-length -1)
+      ido-auto-merge-work-directories-length -1
+      org-src-fontify-natively t
+      org-enforce-todo-dependencies t)
+
 
 (defun racket-setup-company ()
   (when (boundp 'company-backends)
@@ -84,7 +83,7 @@
     (add-to-list 'company-backends 'company-files)))
 
 (add-hook 'racket-mode-hook 'racket-setup-company)
-
+(add-hook 'elixir-mode-hook 'alchemist-mode)
 
 (setq-default indent-tabs-mode nil
               c-basic-offset 2)
@@ -190,9 +189,10 @@
                                   (lambda () (funcall append-checker))))
 
 
-;; (setq flycheck-typescript-tslint-executable "~/Projects/reputation-frontend/node_modules/.bin/tslint") ;; TODO you know
-(setq flycheck-typescript-tslint-executable "~/Projects/ipsos-online-polls/node_modules/.bin/tslint") ;; TODO you know
+(setq flycheck-stylelintrc ".stylelintrc")
+
 (setq-default flycheck-temp-prefix ".flycheck")
+
 
 ;; disable json-jsonlist checking for json files
 (setq-default flycheck-disabled-checkers
@@ -228,6 +228,7 @@
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.babelrc" . js2-mode))
 
+(add-hook 'scss-mode-hook 'flycheck-mode)
 
 (global-company-mode)
 
@@ -258,7 +259,6 @@
 (add-hook 'racket-mode-hook 'my-pretty-lambda)
 (add-hook 'emacs-lisp-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
-
 
 
 (defun setup-tide-mode ()
