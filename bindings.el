@@ -89,16 +89,9 @@
 (define-key jade-mode-map (kbd "M-<right>") #'(lambda () (interactive) (shift-text 2)))
 (define-key jade-mode-map (kbd "M-<left>")  #'(lambda () (interactive) (shift-text -2)))
 
-
-(global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "ipsos-online-polls")))
-;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-server")))
-;; (global-set-key [f1] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
-(global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "devtools-client")))
-;; (global-set-key [f2] (lambda () (interactive) (dt:call! 'pt:load-project! "reputation-frontend")))
-(global-set-key [f3] (lambda () (interactive) (dt:call! 'pt:load-project! "emacs-config")))
-
-
-
+(global-set-key [f1] (lambda () (interactive) (pt:load-project-from-string! "moneytoken")))
+(global-set-key [f2] (lambda () (interactive) (pt:load-project-from-string! "ipsos-online-polls")))
+(global-set-key [f3] (lambda () (interactive) (pt:load-project-from-string! "emacs-config")))
 
 
 ;; (let ((glob-map global-map))
