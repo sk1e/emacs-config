@@ -82,6 +82,8 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 (global-unset-key (kbd "M-<right>"))
 (global-unset-key (kbd "M-<left>"))
 
