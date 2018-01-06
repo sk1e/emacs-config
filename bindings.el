@@ -99,7 +99,7 @@
 ;;     (interactive)
 ;;     (use-global-map (make-sparse-keymap))
 ;;     (global-set-key "\C-x" ctl-x-map))
-  
+
 ;;   (cl-defun kb-restore-global-map ()
 ;;     (interactive)
 ;;     (use-global-map glob-map)))
@@ -125,7 +125,7 @@
 
 
 (setq smerge-mode-local-map
-      (let ((smerge-mode-local-map (make-sparse-keymap)))  
+      (let ((smerge-mode-local-map (make-sparse-keymap)))
         (define-key smerge-mode-local-map (kbd "d") #'smerge-next)
         (define-key smerge-mode-local-map (kbd "a") #'smerge-prev)
         (define-key smerge-mode-local-map (kbd "m") #'smerge-keep-mine)

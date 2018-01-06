@@ -54,11 +54,11 @@
 
 ;; (setq display-buffer-alist
 ;;       `((,(rx bos (or "*Messages*" "*Help*" "*Backtrace*"
-;; 		      (and (1+ ascii) "-l1og")
-;; 		      (and "*exec" (1+ ascii)))
-;; 	      eos) . (wl-half))
-;; 	;; (,(rx bos (1+ ascii) "-log" eos) . (wl-log))
-;; 	("" (display-buffer-same-window))))
+;;                    (and (1+ ascii) "-l1og")
+;;                    (and "*exec" (1+ ascii)))
+;;            eos) . (wl-half))
+;;      ;; (,(rx bos (1+ ascii) "-log" eos) . (wl-log))
+;;      ("" (display-buffer-same-window))))
 
 
 (setq display-time-day-and-date t
@@ -189,6 +189,8 @@
                                   (lambda () (funcall append-checker))))
 
 
+(add-hook 'before-save-hook 'whitespace-cleanup)
+
 (setq flycheck-stylelintrc ".stylelintrc")
 
 (setq-default flycheck-temp-prefix ".flycheck")
@@ -301,4 +303,3 @@
               (setup-tide-mode))))
 
 (provide 'config)
-
