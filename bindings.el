@@ -1,5 +1,8 @@
 ;;;; -*- lexical-binding: t -*-
 (require 'smerge-mode)
+(require 'web-mode)
+(require 'typescript-mode)
+
 
 (defun shift-text (distance)
   (if (use-region-p)
@@ -56,7 +59,7 @@
 (global-set-key (kbd "s-c") 'clipboard-kill-ring-save)
 (global-set-key (kbd "s-v") 'clipboard-yank)
 
-(global-set-key (kbd "s-g") 'tide-jump-to-definition)
+
 (global-set-key (kbd "s-=") 'company-complete)
 
 (global-set-key (kbd "M-<up>") 'drag-stuff-up)
@@ -91,6 +94,13 @@
 
 (define-key jade-mode-map (kbd "M-<right>") #'(lambda () (interactive) (shift-text 2)))
 (define-key jade-mode-map (kbd "M-<left>")  #'(lambda () (interactive) (shift-text -2)))
+
+(mapc (lambda (mode-map)
+        (define-key mode-map (kbd "s-<f11>") 'tide-jump-to-definition)
+        (define-key mode-map (kbd "s-<f12>") 'tide-jump-back)
+        (define-key mode-map (kbd "s-f") 'tide-fix)
+        (define-key mode-map (kbd "C-c r") 'tide-rename-symbol))
+      (list web-mode-map typescript-mode-map))
 
 (global-set-key [f1] (lambda () (interactive) (pt:load-project-from-string! "moneytoken")))
 (global-set-key [f2] (lambda () (interactive) (pt:load-project-from-string! "ipsos-online-polls")))

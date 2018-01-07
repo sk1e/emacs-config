@@ -262,7 +262,6 @@
 (add-hook 'emacs-lisp-mode-hook 'my-pretty-lambda)
 (global-prettify-symbols-mode 1)
 
-
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
