@@ -80,6 +80,7 @@
 (global-set-key (kbd "C-c k") 'counsel-ag)
 (global-set-key (kbd "C-x l") 'counsel-locate)
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(global-set-key (kbd "C-'") 'avy-goto-char-2)
 (define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
 
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -124,7 +125,6 @@
 
 
 (add-hook 'racket-mode-hook (lambda () (define-key racket-mode-map "[" 'skeleton-pair-insert-maybe)))
-
 
 (setq smerge-mode-local-map
       (let ((smerge-mode-local-map (make-sparse-keymap)))
