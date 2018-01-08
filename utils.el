@@ -60,11 +60,11 @@
      (t (let ((new-prefix (read-string (format "Prefix for feature `%s'" feature-name))))
           (project:save-cache (cons (cons feature-name new-prefix) cache)))))))
 
-
-(defun px-to-rem (arg)
-  (interactive "n? ")
-  (insert (format "%.2frem" (/ arg 14.0))))
-
+(defun all-px->rem ()
+  (interactive)
+  (while (re-search-forward (rx (1+ digit) (? "." (0+ digit)) "px") nil t)
+    (cl-destructuring-bind (start-point end-point) (mapcar #'marker-position (match-data))
+      (let ((number (string-to-number (buffer-substring start-point (- end-point 2)))))
+        (replace-match (format "%.2frem" (/ number 14.0)))))))
 
 (provide 'utils)
-

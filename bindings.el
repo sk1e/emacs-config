@@ -3,7 +3,6 @@
 (require 'web-mode)
 (require 'typescript-mode)
 
-
 (defun shift-text (distance)
   (if (use-region-p)
       (let ((mark (mark)))
