@@ -127,8 +127,6 @@
 (tlc:load-unpackaged-dependecies config:external-dependencies)
 
 
-
-
 (defconst tlc:projects-directory "~/Projects")
 
 (cl-defstruct tlc:fragile-dependency project-name branch)
@@ -218,8 +216,6 @@
       ad-do-it)
     ad-do-it))
 
-
-
 (push '("\\.styl\\'" . jade-mode) auto-mode-alist)
 (push '("\\.bash_aliases\\'" . shell-script-mode) auto-mode-alist)
 
@@ -277,8 +273,7 @@
           (lambda ()
             (setq-local company-dabbrev-char-regexp (rx "$" (1+ (in alpha num "-"))))
             (add-to-list (make-local-variable 'company-backends)
-                         '(company-css company-files company-dabbrev :separate company-yasnippet))))
-
+                         '(company-files company-css company-dabbrev :separate company-yasnippet))))
 
 (add-hook 'scss-mode-hook 'rainbow-mode)
 
