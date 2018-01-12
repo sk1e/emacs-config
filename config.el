@@ -276,6 +276,8 @@
                          '(company-files company-css company-dabbrev :separate company-yasnippet))))
 
 (add-hook 'scss-mode-hook 'rainbow-mode)
+(require 'rainbow-mode)
+(add-to-list 'rainbow-html-colors-major-mode-list 'scss-mode)
 
 (setq company-tooltip-align-annotations t)
 
