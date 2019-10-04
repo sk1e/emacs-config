@@ -236,7 +236,7 @@
 
 (require 'jade-mode)
 (require 'racket-mode)
-(require 'bindings)
+(require 'custom-bindings)
 (require 'utils)
 
 (require 'drag-stuff)
